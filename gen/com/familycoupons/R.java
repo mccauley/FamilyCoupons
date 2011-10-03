@@ -22,10 +22,14 @@ public final class R {
         public static final int star=0x7f020003;
     }
     public static final class id {
-        public static final int TextView01=0x7f08000b;
-        public static final int addMember=0x7f08000c;
+        public static final int TextView01=0x7f080010;
+        public static final int addMember=0x7f080011;
         public static final int addMemberCancelBtn=0x7f080009;
         public static final int addMemberSaveBtn=0x7f080008;
+        public static final int edit_cancel_btn=0x7f08000d;
+        public static final int edit_delete_btn=0x7f08000c;
+        public static final int edit_name=0x7f08000b;
+        public static final int edit_save_btn=0x7f08000e;
         public static final int emc_coupon_image=0x7f080002;
         public static final int emc_coupon_number=0x7f080003;
         public static final int emc_minus_btn=0x7f080001;
@@ -33,14 +37,16 @@ public final class R {
         public static final int lineItem=0x7f080000;
         public static final int linearLayout1=0x7f080007;
         public static final int memberNameField=0x7f080006;
-        public static final int member_name=0x7f08000a;
+        public static final int member_name=0x7f08000f;
         public static final int name_lbl=0x7f080005;
+        public static final int textView1=0x7f08000a;
     }
     public static final class layout {
         public static final int adaptor_content=0x7f030000;
         public static final int add_member=0x7f030001;
-        public static final int member_list=0x7f030002;
-        public static final int name_item=0x7f030003;
+        public static final int edit_member=0x7f030002;
+        public static final int member_list=0x7f030003;
+        public static final int name_item=0x7f030004;
     }
     public static final class menu {
         public static final int memberlistoptions=0x7f070000;
@@ -48,6 +54,7 @@ public final class R {
     public static final class string {
         public static final int app_name=0x7f050001;
         public static final int cancel=0x7f050006;
+        public static final int delete=0x7f05000a;
         public static final int done=0x7f050007;
         public static final int emc_add_coupon_type=0x7f050009;
         public static final int menu_item_add_member=0x7f050002;

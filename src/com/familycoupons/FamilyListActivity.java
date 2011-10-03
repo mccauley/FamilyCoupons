@@ -22,6 +22,7 @@ import com.familycoupons.datatypes.FamilyMembers;
 public class FamilyListActivity extends ExpandableListActivity {
 	private MembersAdapter dbHelper;
 	private Cursor cursor;
+	private Intent editMemberIntent;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -31,6 +32,7 @@ public class FamilyListActivity extends ExpandableListActivity {
 		this.getExpandableListView().setDividerHeight(2);
 		dbHelper = new MembersAdapter(this);
 		dbHelper.open();
+		editMemberIntent = new Intent(this, EditMemberActivity.class);
 
 		fillData();
 		registerForContextMenu(getExpandableListView());
@@ -65,18 +67,13 @@ public class FamilyListActivity extends ExpandableListActivity {
 		return true;
 	}
 
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		super.onOptionsItemSelected(item);
 		startActivity(item.getIntent());
 		return true;
 	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		super.onActivityResult(requestCode, resultCode, intent);
-		fillData();
-
-	}
+	
 
 	public class NameListCursorTreeAdapter extends SimpleCursorTreeAdapter {
 
@@ -113,6 +110,20 @@ public class FamilyListActivity extends ExpandableListActivity {
 				public void onClick(View view) {
 					int value = dbHelper.subtractCoupon(couponType, memberId);
 					couponQtyView.setText(String.valueOf(value));
+				}
+			});
+		}
+		
+		@Override
+		protected void bindGroupView(View view, Context context, Cursor cursor, boolean isExpanded) {
+			super.bindGroupView(view, context, cursor, isExpanded);
+			final long memberId = cursor.getLong(cursor.getColumnIndex(FamilyMembers.COLUMN_ID));
+			view.setOnLongClickListener(new View.OnLongClickListener() {
+				@Override
+				public boolean onLongClick(View v) {
+					editMemberIntent.putExtra("memberId", memberId);
+					startActivity(editMemberIntent);
+					return true;
 				}
 			});
 		}

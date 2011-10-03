@@ -20,7 +20,7 @@ public class AddMemberActivity extends Activity {
 		me = this;
 		dbHelper = new MembersAdapter(this);
 		dbHelper.open();
-
+		
 		Button saveButton = (Button) findViewById(R.id.addMemberSaveBtn);
 		saveButton.setOnClickListener(new View.OnClickListener() {
 

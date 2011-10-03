@@ -13,4 +13,5 @@
     <string name="package_string">com.familycoupons</string>
     <string name="emc_add_coupon_type">Add Coupon Type</string>
     <color name="white">#FFFFFF</color>
+    <string name="delete">Delete</string>
 </resources>

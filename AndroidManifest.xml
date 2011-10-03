@@ -13,6 +13,7 @@
             </intent-filter>
         </activity>
         <activity android:name="AddMemberActivity"></activity>
+        <activity android:name="EditMemberActivity"></activity>
 
     </application>
 </manifest>

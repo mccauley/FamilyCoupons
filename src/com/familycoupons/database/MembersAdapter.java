@@ -21,7 +21,11 @@ public class MembersAdapter {
 
 	public MembersAdapter open() throws SQLException {
 		dbHelper = new MembersDatabase(context);
-		database = dbHelper.getWritableDatabase();
+		return open(dbHelper);
+	}
+	
+	protected MembersAdapter open(MembersDatabase db) {
+		database = db.getWritableDatabase();
 		return this;
 	}
 
@@ -51,10 +55,9 @@ public class MembersAdapter {
 	/**
 	 * Update the member
 	 */
-	public boolean updateMember(long rowId, String name) {
+	public boolean updateMember(long memberId, String name) {
 		ContentValues updateValues = updateContentValues(name);
-
-		return database.update(FamilyMembers.TABLE_NAME, updateValues, FamilyMembers.COLUMN_ID + "=" + rowId, null) > 0;
+		return database.update(FamilyMembers.TABLE_NAME, updateValues, FamilyMembers.COLUMN_ID + "= ?", new String[] { String.valueOf(memberId)}) > 0;
 	}
 
 	public boolean updateOrCreateMemberCoupon(int couponType, long memberId, int value) {
@@ -69,8 +72,8 @@ public class MembersAdapter {
 	public boolean updateMemberCoupon(int couponType, long memberId, int value) {
 		ContentValues values = new ContentValues();
 		values.put(Coupons.COLUMN_COUPON_QTY, value);
-		return database.update(Coupons.TABLE_NAME, values, Coupons.COLUMN_MEMBER_ID + "=" + memberId + " AND "
-				+ Coupons.COLUMN_COUPON_TYPE_ID + "=" + couponType, null) > 0;
+		return database.update(Coupons.TABLE_NAME, values, Coupons.COLUMN_MEMBER_ID + "= ? " + memberId + " AND "
+				+ Coupons.COLUMN_COUPON_TYPE_ID + "= ?" + couponType, new String[] {String.valueOf(memberId), String.valueOf(couponType)}) > 0;
 	}
 
 	public int addCoupon(int couponType, long memberId) {
