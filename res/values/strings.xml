@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_members">There are currently no family members</string>
+    <string name="app_name">Family Coupons</string>
+    <color name="name_list_color">#000000</color>
+    <color name="black">#000000</color>
+    <string name="menu_item_add_member">Add Member</string>
+    <string name="menu_item_edit_coupons">Edit Coupons</string>
+    <string name="name_str">Name</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="package_string">com.familycoupons</string>
+    <string name="emc_add_coupon_type">Add Coupon Type</string>
+    <color name="white">#FFFFFF</color>
+</resources>
