@@ -52,7 +52,6 @@ public class FamilyListActivity extends ExpandableListActivity {
 		String[] childFrom = new String[] { Coupons.COLUMN_COUPON_QTY, CouponType.COLUMN_IMAGE };
 		int[] childTo = new int[] { R.id.emc_coupon_number, R.id.emc_coupon_image };
 
-		// Now create an array adapter and set it to display using our row
 		NameListCursorTreeAdapter members = new NameListCursorTreeAdapter(this, cursor, R.layout.name_item, from, to,
 				R.layout.adaptor_content, childFrom, childTo);
 		setListAdapter(members);
