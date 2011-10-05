@@ -17,15 +17,17 @@ public final class R {
     }
     public static final class drawable {
         public static final int dessert=0x7f020000;
-        public static final int hairdryer=0x7f020001;
-        public static final int icon=0x7f020002;
-        public static final int star=0x7f020003;
+        public static final int fadedarchetype=0x7f020001;
+        public static final int hairdryer=0x7f020002;
+        public static final int icon=0x7f020003;
+        public static final int star=0x7f020004;
     }
     public static final class id {
         public static final int TextView01=0x7f080010;
         public static final int addMember=0x7f080011;
         public static final int addMemberCancelBtn=0x7f080009;
         public static final int addMemberSaveBtn=0x7f080008;
+        public static final int editMember=0x7f080012;
         public static final int edit_cancel_btn=0x7f08000d;
         public static final int edit_delete_btn=0x7f08000c;
         public static final int edit_name=0x7f08000b;
@@ -56,13 +58,16 @@ public final class R {
         public static final int cancel=0x7f050006;
         public static final int delete=0x7f05000a;
         public static final int done=0x7f050007;
+        public static final int edit=0x7f05000b;
         public static final int emc_add_coupon_type=0x7f050009;
         public static final int menu_item_add_member=0x7f050002;
         public static final int menu_item_edit_coupons=0x7f050003;
+        public static final int menu_item_edit_member=0x7f05000c;
         public static final int name_str=0x7f050004;
         public static final int no_members=0x7f050000;
         public static final int package_string=0x7f050008;
         public static final int save=0x7f050005;
+        public static final int which_member=0x7f05000d;
     }
     public static final class xml {
         public static final int names_coupons=0x7f040000;

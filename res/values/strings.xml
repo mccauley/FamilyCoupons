@@ -14,4 +14,7 @@
     <string name="emc_add_coupon_type">Add Coupon Type</string>
     <color name="white">#FFFFFF</color>
     <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="menu_item_edit_member">Edit Member</string>
+    <string name="which_member">Select a Family Member to edit</string>
 </resources>

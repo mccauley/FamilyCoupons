@@ -30,7 +30,8 @@ public class MembersAdapter {
 	}
 
 	public void close() {
-		dbHelper.close();
+		if (database.isOpen())
+			database.close();
 	}
 
 	/**
@@ -87,7 +88,7 @@ public class MembersAdapter {
 	public int subtractCoupon(int couponType, long memberId) {
 		database.execSQL("UPDATE " + Coupons.TABLE_NAME + " SET " + Coupons.COLUMN_COUPON_QTY + " = "
 				+ Coupons.COLUMN_COUPON_QTY + " - 1 WHERE " + Coupons.COLUMN_COUPON_TYPE_ID + " = ? AND "
-				+ Coupons.COLUMN_MEMBER_ID + " = ?", new String[] { String.valueOf(couponType),
+				+ Coupons.COLUMN_MEMBER_ID + " = ? AND " + Coupons.COLUMN_COUPON_QTY + " > 0", new String[] { String.valueOf(couponType),
 				String.valueOf(memberId) });
 		return fetchQtyForCouponTypeAndMember(couponType, memberId);
 	}
@@ -100,6 +101,7 @@ public class MembersAdapter {
 		if (c.moveToFirst()) {
 			newValue = c.getInt(c.getColumnIndex(Coupons.COLUMN_COUPON_QTY));
 		}
+		c.close();
 		return newValue;
 	}
 
@@ -122,8 +124,18 @@ public class MembersAdapter {
 	/**
 	 * Deletes member
 	 */
-	public boolean deleteMember(long rowId) {
-		return database.delete(FamilyMembers.TABLE_NAME, FamilyMembers.COLUMN_ID + "=" + rowId, null) > 0;
+	public boolean deleteMember(long memberId) {
+		String[] memberIdStr = new String[] { String.valueOf(memberId)};
+		int deleteResult = 0;
+		try {
+			database.beginTransaction();
+			database.delete(Coupons.TABLE_NAME, Coupons.COLUMN_MEMBER_ID + "= ?", memberIdStr);
+			deleteResult = database.delete(FamilyMembers.TABLE_NAME, FamilyMembers.COLUMN_ID + "= ?", memberIdStr);
+			database.setTransactionSuccessful();
+		} finally {
+			database.endTransaction();
+		}
+		return deleteResult > 0;
 	}
 
 	/**

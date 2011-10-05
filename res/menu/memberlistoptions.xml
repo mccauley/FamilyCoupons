@@ -2,4 +2,5 @@
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/addMember" android:title="@string/menu_item_add_member"></item>
+    <item android:id="@+id/editMember" android:title="@string/menu_item_edit_member"></item>
 </menu>
