@@ -30,6 +30,7 @@ public class FamilyListActivity extends ExpandableListActivity {
 	String[] memberNamesArray;
 	private Intent editMemberIntent;
 	MenuItem addMemberMenuItem;
+	MenuItem editCouponsMenuItem;
 	Dialog whichMemberDialog;
 
 	/** Called when the activity is first created. */
@@ -37,7 +38,7 @@ public class FamilyListActivity extends ExpandableListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.member_list);
-		this.getExpandableListView().setDividerHeight(2);
+		getExpandableListView().setDividerHeight(2);
 		dbHelper = new MembersAdapter(this);
 		dbHelper.open();
 		editMemberIntent = new Intent(this, EditMemberActivity.class);
@@ -74,8 +75,10 @@ public class FamilyListActivity extends ExpandableListActivity {
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.memberlistoptions, menu);
 		addMemberMenuItem = menu.findItem(R.id.addMember);
+		editCouponsMenuItem = menu.findItem(R.id.editCoupons);
 		MenuItem editMemberMenuItem = menu.findItem(R.id.editMember);
 		addMemberMenuItem.setIntent(new Intent(this, AddMemberActivity.class));
+		editCouponsMenuItem.setIntent(new Intent(this, EditCouponsListActivity.class));
 		editMemberMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
@@ -131,7 +134,7 @@ public class FamilyListActivity extends ExpandableListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		super.onOptionsItemSelected(item);
-		if (item.equals(addMemberMenuItem)) {
+		if (item.equals(addMemberMenuItem) || item.equals(editCouponsMenuItem)) {
 			startActivity(item.getIntent());
 		}
 		return true;

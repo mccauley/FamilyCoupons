@@ -23,15 +23,21 @@ public final class R {
         public static final int star=0x7f020004;
     }
     public static final class id {
-        public static final int TextView01=0x7f080010;
-        public static final int addMember=0x7f080011;
+        public static final int TextView01=0x7f080017;
+        public static final int addMember=0x7f080018;
         public static final int addMemberCancelBtn=0x7f080009;
         public static final int addMemberSaveBtn=0x7f080008;
-        public static final int editMember=0x7f080012;
-        public static final int edit_cancel_btn=0x7f08000d;
-        public static final int edit_delete_btn=0x7f08000c;
-        public static final int edit_name=0x7f08000b;
-        public static final int edit_save_btn=0x7f08000e;
+        public static final int couponCheckBox=0x7f08000c;
+        public static final int editCoupons=0x7f08001a;
+        public static final int editMember=0x7f080019;
+        public static final int edit_cancel_btn=0x7f080014;
+        public static final int edit_coupons_done_btn=0x7f080010;
+        public static final int edit_coupons_image=0x7f08000b;
+        public static final int edit_coupons_item_desc=0x7f08000e;
+        public static final int edit_coupons_item_name=0x7f08000d;
+        public static final int edit_delete_btn=0x7f080013;
+        public static final int edit_name=0x7f080012;
+        public static final int edit_save_btn=0x7f080015;
         public static final int emc_coupon_image=0x7f080002;
         public static final int emc_coupon_number=0x7f080003;
         public static final int emc_minus_btn=0x7f080001;
@@ -39,16 +45,20 @@ public final class R {
         public static final int lineItem=0x7f080000;
         public static final int linearLayout1=0x7f080007;
         public static final int memberNameField=0x7f080006;
-        public static final int member_name=0x7f08000f;
+        public static final int member_name=0x7f080016;
         public static final int name_lbl=0x7f080005;
-        public static final int textView1=0x7f08000a;
+        public static final int relativeLayout1=0x7f08000a;
+        public static final int scrollView1=0x7f08000f;
+        public static final int textView1=0x7f080011;
     }
     public static final class layout {
         public static final int adaptor_content=0x7f030000;
         public static final int add_member=0x7f030001;
-        public static final int edit_member=0x7f030002;
-        public static final int member_list=0x7f030003;
-        public static final int name_item=0x7f030004;
+        public static final int edit_coupons_item=0x7f030002;
+        public static final int edit_coupons_list=0x7f030003;
+        public static final int edit_member=0x7f030004;
+        public static final int member_list=0x7f030005;
+        public static final int name_item=0x7f030006;
     }
     public static final class menu {
         public static final int memberlistoptions=0x7f070000;

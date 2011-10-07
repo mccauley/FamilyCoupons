@@ -39,16 +39,24 @@ public class MembersAdapter {
 	 * rowId for that member, otherwise return a -1 to indicate failure.
 	 */
 	public long createMember(String name) {
+		long newMemberId = -1;
 		ContentValues initialValues = createContentValues(name);
-
-		long newMemberId = database.insert(FamilyMembers.TABLE_NAME, null, initialValues);
-		Cursor cursor = this.fetchCouponTypes();
-		if (cursor.moveToFirst()) {
-			while (!cursor.isAfterLast()) {
-				int couponType = cursor.getInt(cursor.getColumnIndex(CouponType.COLUMN_ID));
-				this.createMemberCoupon(couponType, newMemberId);
-				cursor.moveToNext();
+		database.beginTransaction();
+		try {
+			newMemberId = database.insert(FamilyMembers.TABLE_NAME, null, initialValues);
+			Cursor cursor = this.fetchCouponTypes();
+			if (cursor.moveToFirst()) {
+				while (!cursor.isAfterLast()) {
+					int couponType = cursor.getInt(cursor.getColumnIndex(CouponType.COLUMN_ID));
+					createMemberCoupon(couponType, newMemberId);
+					cursor.moveToNext();
+				}
 			}
+			cursor.close();
+			database.setTransactionSuccessful();
+		}
+		finally {
+			database.endTransaction();
 		}
 		return newMemberId;
 	}
@@ -58,7 +66,7 @@ public class MembersAdapter {
 	 */
 	public boolean updateMember(long memberId, String name) {
 		ContentValues updateValues = updateContentValues(name);
-		return database.update(FamilyMembers.TABLE_NAME, updateValues, FamilyMembers.COLUMN_ID + "= ?", new String[] { String.valueOf(memberId)}) > 0;
+		return database.update(FamilyMembers.TABLE_NAME, updateValues, FamilyMembers.COLUMN_ID + "= ?", makeStringArray(memberId)) > 0;
 	}
 
 	public boolean updateOrCreateMemberCoupon(int couponType, long memberId, int value) {
@@ -73,31 +81,38 @@ public class MembersAdapter {
 	public boolean updateMemberCoupon(int couponType, long memberId, int value) {
 		ContentValues values = new ContentValues();
 		values.put(Coupons.COLUMN_COUPON_QTY, value);
-		return database.update(Coupons.TABLE_NAME, values, Coupons.COLUMN_MEMBER_ID + "= ? " + memberId + " AND "
-				+ Coupons.COLUMN_COUPON_TYPE_ID + "= ?" + couponType, new String[] {String.valueOf(memberId), String.valueOf(couponType)}) > 0;
+		String whereClause = Coupons.COLUMN_MEMBER_ID + "= ? " + memberId + " AND "
+				+ Coupons.COLUMN_COUPON_TYPE_ID + "= ?";
+		return database.update(Coupons.TABLE_NAME, values, whereClause, makeStringArray(memberId, couponType)) > 0;
+	}
+	
+	public void updateCouponTypeActive(int couponTypeId, boolean active) {
+		ContentValues values = new ContentValues();
+		values.put(CouponType.COLUMN_ACTIVE, (active ? 1 : 0));
+		database.update(CouponType.TABLE_NAME, values, CouponType.COLUMN_ID + "=?", makeStringArray(couponTypeId));
 	}
 
 	public int addCoupon(int couponType, long memberId) {
-		database.execSQL("UPDATE " + Coupons.TABLE_NAME + " SET " + Coupons.COLUMN_COUPON_QTY + " = "
+		String sql = "UPDATE " + Coupons.TABLE_NAME + " SET " + Coupons.COLUMN_COUPON_QTY + " = "
 				+ Coupons.COLUMN_COUPON_QTY + " + 1 WHERE " + Coupons.COLUMN_COUPON_TYPE_ID + " = ? AND "
-				+ Coupons.COLUMN_MEMBER_ID + " = ?", new String[] { String.valueOf(couponType),
-				String.valueOf(memberId) });
+				+ Coupons.COLUMN_MEMBER_ID + " = ?";
+		database.execSQL(sql, makeStringArray(couponType,memberId));
 		return fetchQtyForCouponTypeAndMember(couponType, memberId);
 	}
 
 	public int subtractCoupon(int couponType, long memberId) {
-		database.execSQL("UPDATE " + Coupons.TABLE_NAME + " SET " + Coupons.COLUMN_COUPON_QTY + " = "
+		String sql = "UPDATE " + Coupons.TABLE_NAME + " SET " + Coupons.COLUMN_COUPON_QTY + " = "
 				+ Coupons.COLUMN_COUPON_QTY + " - 1 WHERE " + Coupons.COLUMN_COUPON_TYPE_ID + " = ? AND "
-				+ Coupons.COLUMN_MEMBER_ID + " = ? AND " + Coupons.COLUMN_COUPON_QTY + " > 0", new String[] { String.valueOf(couponType),
-				String.valueOf(memberId) });
+				+ Coupons.COLUMN_MEMBER_ID + " = ? AND " + Coupons.COLUMN_COUPON_QTY + " > 0";
+		database.execSQL(sql, makeStringArray(couponType, memberId));
 		return fetchQtyForCouponTypeAndMember(couponType, memberId);
 	}
 
 	public int fetchQtyForCouponTypeAndMember(int couponType, long memberId) {
 		int newValue = 0;
-		Cursor c = database.rawQuery("SELECT " + Coupons.COLUMN_COUPON_QTY + " FROM " + Coupons.TABLE_NAME + " WHERE "
-				+ Coupons.COLUMN_COUPON_TYPE_ID + " = ? AND " + Coupons.COLUMN_MEMBER_ID + " = ?", new String[] {
-				String.valueOf(couponType), String.valueOf(memberId) });
+		String sql = "SELECT " + Coupons.COLUMN_COUPON_QTY + " FROM " + Coupons.TABLE_NAME + " WHERE "
+				+ Coupons.COLUMN_COUPON_TYPE_ID + " = ? AND " + Coupons.COLUMN_MEMBER_ID + " = ?";
+		Cursor c = database.rawQuery(sql, makeStringArray(couponType, memberId));
 		if (c.moveToFirst()) {
 			newValue = c.getInt(c.getColumnIndex(Coupons.COLUMN_COUPON_QTY));
 		}
@@ -125,7 +140,7 @@ public class MembersAdapter {
 	 * Deletes member
 	 */
 	public boolean deleteMember(long memberId) {
-		String[] memberIdStr = new String[] { String.valueOf(memberId)};
+		String[] memberIdStr = makeStringArray(memberId);
 		int deleteResult = 0;
 		try {
 			database.beginTransaction();
@@ -149,9 +164,6 @@ public class MembersAdapter {
 				FamilyMembers.COLUMN_MODIFICATION_DATE }, null, null, null, null, null);
 	}
 
-	/**
-	 * Return a Cursor positioned at the defined todo
-	 */
 	public Cursor fetchMember(long rowId) throws SQLException {
 		Cursor mCursor = database.query(true, FamilyMembers.TABLE_NAME, new String[] { FamilyMembers.COLUMN_ID,
 				FamilyMembers.COLUMN_MEMBER_NAME, FamilyMembers.COLUMN_CREATE_DATE,
@@ -165,14 +177,14 @@ public class MembersAdapter {
 
 	public Cursor fetchCouponTypes() {
 		return database.query(CouponType.TABLE_NAME, new String[] { CouponType.COLUMN_ID, CouponType.COLUMN_DESC,
-				CouponType.COLUMN_NAME, CouponType.COLUMN_IMAGE }, null, null, null, null, null);
+				CouponType.COLUMN_NAME, CouponType.COLUMN_IMAGE, CouponType.COLUMN_ACTIVE }, null, null, null, null, null);
 	}
 
 	public Cursor fetchCouponsForMember(long memberId) throws SQLException {
 		String sql = "SELECT * FROM " + Coupons.TABLE_NAME + ", " + CouponType.TABLE_NAME + " WHERE "
 				+ Coupons.TABLE_NAME + "." + Coupons.COLUMN_COUPON_TYPE_ID + " = " + CouponType.TABLE_NAME + "."
-				+ CouponType.COLUMN_ID + " AND " + Coupons.TABLE_NAME + "." + Coupons.COLUMN_MEMBER_ID + " = ?";
-		return database.rawQuery(sql, new String[] { String.valueOf(memberId) });
+				+ CouponType.COLUMN_ID + " AND " + Coupons.TABLE_NAME + "." + Coupons.COLUMN_MEMBER_ID + " = ? AND " + CouponType.COLUMN_ACTIVE + " = 1";
+		return database.rawQuery(sql, makeStringArray(memberId));
 	}
 
 	private ContentValues createContentValues(String name) {
@@ -187,6 +199,14 @@ public class MembersAdapter {
 		ContentValues values = new ContentValues();
 		values.put(FamilyMembers.COLUMN_MEMBER_NAME, name);
 		values.put(FamilyMembers.COLUMN_MODIFICATION_DATE, System.currentTimeMillis());
+		return values;
+	}
+	
+	private String[] makeStringArray(long... items) {
+		String[] values = new String[items.length];
+		for(int i = 0; i < items.length; i++) {
+			values[i] = String.valueOf(items[i]);
+		}
 		return values;
 	}
 }

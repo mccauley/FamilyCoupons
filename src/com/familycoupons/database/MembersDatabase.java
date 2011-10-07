@@ -16,7 +16,9 @@ import com.familycoupons.datatypes.FamilyMembers;
 public class MembersDatabase extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "members.db";
 
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
+	
+	private static final DataModel[] DATA_MODELS = new DataModel[] {new CouponType(), new FamilyMembers(), new Coupons() };
 
 	public MembersDatabase(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -25,23 +27,21 @@ public class MembersDatabase extends SQLiteOpenHelper {
 	// Method is called during creation of the database
 	@Override
 	public void onCreate(SQLiteDatabase database) {
-		database.execSQL(FamilyMembers.TABLE_CREATE_SQL);
-		database.execSQL(Coupons.TABLE_CREATE_SQL);
-		database.execSQL(CouponType.TABLE_CREATE_SQL);
-		database.execSQL(CouponType.DEFAULT_TYPE_STAR);
-		database.execSQL(CouponType.DEFAULT_TYPE_DESSERT);
-		database.execSQL(CouponType.DEFAULT_TYPE_HAIR);
+		for(DataModel model : DATA_MODELS) {
+			model.onCreate(database);
+		}
 	}
 
 	// Method is called during an upgrade of the database, e.g. if you increase
 	// the database version
 	@Override
 	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-		Log.w(MembersDatabase.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion
-				+ ", which will destroy all old data");
-		database.execSQL("DROP TABLE IF EXISTS " + FamilyMembers.TABLE_NAME);
-		database.execSQL("DROP TABLE IF EXISTS " + Coupons.TABLE_NAME);
-		database.execSQL("DROP TABLE IF EXISTS " + CouponType.TABLE_NAME);
-		onCreate(database);
+		Log.w(MembersDatabase.class.getName(), "Upgrading database from version " + oldVersion + " to " + newVersion);
+		for (int i = oldVersion; i < newVersion; i++) {
+			for(DataModel model : DATA_MODELS) {
+				Log.w(MembersDatabase.class.getName(), "Upgrading table " + model.getTableName());
+				model.upgradeTo(database, newVersion);
+			}
+		}
 	}
 }
