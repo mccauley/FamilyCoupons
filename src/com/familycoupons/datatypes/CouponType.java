@@ -22,8 +22,6 @@ public class CouponType implements DataModel {
 	
 	private static final String TABLE_UPGRADE_SQL_2 = "alter table " + TABLE_NAME + " add column " + COLUMN_ACTIVE_DEF + ";";
 	
-	private static final String SEP = ", ";
-	
 	public static final String TABLE_CREATE_SQL = "create table "
 		+ TABLE_NAME
 		+ "(" + COLUMN_ID_DEF + SEP
