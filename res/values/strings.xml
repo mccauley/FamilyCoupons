@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <string name="no_members">There are currently no family members</string>
+    <string name="no_members">There are currently no family members. Press the menu button then \"Add Member\" to add a family member to the list.</string>
     <string name="app_name">Family Coupons</string>
     <color name="name_list_color">#000000</color>
     <color name="black">#000000</color>
