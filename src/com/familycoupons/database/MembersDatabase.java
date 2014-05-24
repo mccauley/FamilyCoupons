@@ -17,7 +17,7 @@ import com.familycoupons.datatypes.IconType;
 public class MembersDatabase extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "members.db";
 
-	private static final int DATABASE_VERSION = 3;
+	private static final int DATABASE_VERSION = 4;
 	
 	private static final DataModel[] DATA_MODELS = new DataModel[] {new CouponType(), new FamilyMembers(), new Coupons(), new IconType() };
 

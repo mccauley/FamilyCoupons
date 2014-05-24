@@ -19,11 +19,38 @@ public final class R {
         public static final int editTextLabelSize=0x7f050000;
     }
     public static final class drawable {
-        public static final int dessert=0x7f020000;
-        public static final int fadedarchetype=0x7f020001;
-        public static final int hairdryer=0x7f020002;
-        public static final int icon=0x7f020003;
-        public static final int star=0x7f020004;
+        public static final int award_star_bronze=0x7f020000;
+        public static final int award_star_gold=0x7f020001;
+        public static final int award_star_silver=0x7f020002;
+        public static final int board_game=0x7f020003;
+        public static final int brain=0x7f020004;
+        public static final int bricks=0x7f020005;
+        public static final int calandar=0x7f020006;
+        public static final int dessert=0x7f020007;
+        public static final int dialog_ok=0x7f020008;
+        public static final int drill=0x7f020009;
+        public static final int elephant=0x7f02000a;
+        public static final int fadedarchetype=0x7f02000b;
+        public static final int fancy_steak_dinner=0x7f02000c;
+        public static final int gear_in=0x7f02000d;
+        public static final int hairdryer=0x7f02000e;
+        public static final int icecream=0x7f02000f;
+        public static final int icon=0x7f020010;
+        public static final int laptop=0x7f020011;
+        public static final int masks=0x7f020012;
+        public static final int movielogo=0x7f020013;
+        public static final int musclecar=0x7f020014;
+        public static final int museum=0x7f020015;
+        public static final int package_games_arcade=0x7f020016;
+        public static final int peacock=0x7f020017;
+        public static final int pencil=0x7f020018;
+        public static final int question_mark=0x7f020019;
+        public static final int shopping=0x7f02001a;
+        public static final int siren=0x7f02001b;
+        public static final int star=0x7f02001c;
+        public static final int trophy=0x7f02001d;
+        public static final int tv=0x7f02001e;
+        public static final int wizard=0x7f02001f;
     }
     public static final class id {
         public static final int TextView01=0x7f09001f;

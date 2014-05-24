@@ -18,9 +18,41 @@ public class CouponType implements DataModel {
 	private static final String COLUMN_NAME_DEF = COLUMN_NAME + " text not null";
 	private static final String COLUMN_DESC_DEF = COLUMN_DESC + " text";
 	private static final String COLUMN_IMAGE_DEF = COLUMN_IMAGE + " text not null";
-	private static final String COLUMN_ACTIVE_DEF = COLUMN_ACTIVE + " integer default 1";
+	private static final String COLUMN_ACTIVE_DEF = COLUMN_ACTIVE + " integer default 0";
 	
 	private static final String TABLE_UPGRADE_SQL_2 = "alter table " + TABLE_NAME + " add column " + COLUMN_ACTIVE_DEF + ";";
+	
+	private static final String[][] defaultValues = {
+		{"Star", "Stay up 15 minutes longer past your bedtime", "star"},
+		{"Dessert","Dessert of your choosing for the whole family","dessert"},
+		{"Hair Drying", "Adult will dry your hair after a washing","hairdryer"},
+		{"Bronze Star", "","award_star_bronze"},
+		{"Silver Star", "","award_star_silver"},
+		{"Gold Star", "","award_star_gold"},
+		{"Game", "","board_game"},
+		{"Brain", "","brain"},
+		{"Construction Bricks", "","bricks"},
+		{"Day Off", "","calandar"},
+		{"Check", "","dialog_ok"},
+		{"Drill", "","drill"},
+		{"Zoo", "","elephant"},
+		{"Dinner", "","fancy_steak_dinner"},
+		{"Gear", "","gear_in"},
+		{"Ice Cream", "","icecream"},
+		{"Computer", "","laptop"},
+		{"Theater", "","masks"},
+		{"Movie", "","movielogo"},
+		{"Race", "","musclecar"},
+		{"Museum", "","museum"},
+		{"Peacock", "","peacock"},
+		{"Pencil", "","pencil"},
+		{"Surprise", "","question_mark"},
+		{"Shopping", "","shopping"},
+		{"Siren", "","siren"},
+		{"Trophy", "","trophy"},
+		{"TV", "","tv"},
+		{"Wizard", "","wizard"}
+	};
 	
 	public static final String TABLE_CREATE_SQL = "create table "
 		+ TABLE_NAME
@@ -32,22 +64,10 @@ public class CouponType implements DataModel {
 		+ ");";
 	
 	
-	private static final String DEFAULT_TYPE_STAR = "insert into "
+	private static final String DEFAULT_INSERT_SQL = "insert into "
 		+ TABLE_NAME
 		+ " (" + COLUMN_NAME + ", " + COLUMN_DESC + ", " + COLUMN_IMAGE + ") values "
-		+ "(\"Star\", \"Stay up 15 minutes longer past your bedtime\", \"star\");";
-	
-	private static final String DEFAULT_TYPE_DESSERT =
-		"insert into "
-		+ TABLE_NAME
-		+ " (" + COLUMN_NAME + ", " + COLUMN_DESC + ", " + COLUMN_IMAGE + ") values "
-		+ "(\"Dessert\", \"Dessert of your choosing for the whole family\", \"dessert\");";
-		
-	private static final String DEFAULT_TYPE_HAIR =
-		"insert into "
-		+ TABLE_NAME
-		+ " (" + COLUMN_NAME + ", " + COLUMN_DESC + ", " + COLUMN_IMAGE + ") values "
-		+ "(\"Hair Drying\", \"Adult will dry your hair after a washing\", \"hairdryer\");";
+		+ "(?, ?, ?);";
 	
 	@Override
 	public String getCreateSQL() {
@@ -72,8 +92,8 @@ public class CouponType implements DataModel {
 	@Override
 	public void onCreate(SQLiteDatabase database) {
 		database.execSQL(TABLE_CREATE_SQL);
-		database.execSQL(DEFAULT_TYPE_DESSERT);
-		database.execSQL(DEFAULT_TYPE_HAIR);
-		database.execSQL(DEFAULT_TYPE_STAR);
+		for (int i = 0; i < defaultValues.length; i++) {
+			database.execSQL(DEFAULT_INSERT_SQL, defaultValues[i]);
+		}
 	}
 }
