@@ -28,12 +28,12 @@ public class EditCouponActivity extends Activity {
 		
 		final long couponTypeId = this.getIntent().getExtras().getInt("couponTypeId");
 		Cursor couponType = dbHelper.fetchCoupon(couponTypeId);
+		final EditText couponNameEditText = (EditText) findViewById(R.id.editCouponNameDetail);
+		final EditText couponDescEditText = (EditText) findViewById(R.id.editCouponDescDetail);
+		final ImageView iconImage = (ImageView) findViewById(R.id.couponImageView);
 		if (couponType.moveToFirst()) {
-			EditText couponNameEditText = (EditText) findViewById(R.id.editCouponNameDetail);
 			couponNameEditText.setText(couponType.getString(couponType.getColumnIndex(CouponType.COLUMN_NAME)));
-			EditText couponDescEditText = (EditText) findViewById(R.id.editCouponDescDetail);
 			couponDescEditText.setText(couponType.getString(couponType.getColumnIndex(CouponType.COLUMN_DESC)));
-			ImageView iconImage = (ImageView) findViewById(R.id.couponImageView);
 			Context context = iconImage.getContext();
 			String value = couponType.getString(couponType.getColumnIndex(CouponType.COLUMN_IMAGE));
 			int id = context.getResources()
@@ -51,6 +51,18 @@ public class EditCouponActivity extends Activity {
 		cancelButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				me.finish();
+			}
+		});
+		
+		saveButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String name = couponNameEditText.getText().toString();
+				String desc = couponDescEditText.getText().toString();
+				dbHelper.open();
+				dbHelper.updateCoupon(couponTypeId, name, desc);
+				dbHelper.close();
 				me.finish();
 			}
 		});

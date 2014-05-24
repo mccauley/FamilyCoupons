@@ -127,6 +127,13 @@ public class MembersAdapter {
 		values.put(CouponType.COLUMN_IMAGE, imageFile);
 		return database.insert(CouponType.TABLE_NAME, null, values);
 	}
+	
+	public void updateCoupon(long id, String name, String desc) {
+		ContentValues values = new ContentValues();
+		values.put(CouponType.COLUMN_NAME, name);
+		values.put(CouponType.COLUMN_DESC, desc);
+		database.update(CouponType.TABLE_NAME, values, CouponType.COLUMN_ID + "=" + id, null);
+	}
 
 	public long createMemberCoupon(int couponType, long memberId) {
 		ContentValues values = new ContentValues();
