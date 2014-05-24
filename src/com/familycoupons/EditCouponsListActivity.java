@@ -2,6 +2,7 @@ package com.familycoupons;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.familycoupons.datatypes.CouponType;
 
 public class EditCouponsListActivity extends ListActivity {
 	private MembersAdapter dbHelper;
+	private Intent editCouponDetailIntent;
 	EditCouponsListActivity me;
 
 	@Override
@@ -26,6 +28,7 @@ public class EditCouponsListActivity extends ListActivity {
 		setContentView(R.layout.edit_coupons_list);
 		getListView().setDividerHeight(2);
 		me = this;
+		editCouponDetailIntent = new Intent(this, EditCouponActivity.class);
 
 		dbHelper = new MembersAdapter(this);
 		dbHelper.open();
@@ -83,14 +86,23 @@ public class EditCouponsListActivity extends ListActivity {
 					if (text == null) {
 						text = "";
 					}
+					final int couponTypeId = cursor.getInt(cursor.getColumnIndex(CouponType.COLUMN_ID)); 
+					View.OnClickListener editDetailClickListener = new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							editCouponDetailIntent.putExtra("couponTypeId", couponTypeId);
+							startActivity(editCouponDetailIntent);
+						}
+					};
 
 					if (v instanceof CheckBox) {
-						int couponTypeId = cursor.getInt(cursor.getColumnIndex(CouponType.COLUMN_ID)); 
 						setViewCheckBox((CheckBox) v, text, couponTypeId);
 					} else if (v instanceof TextView) {
 						setViewText((TextView) v, text);
+						v.setOnClickListener(editDetailClickListener);
 					} else if (v instanceof ImageView) {
 						setViewImage((ImageView) v, text);
+						v.setOnClickListener(editDetailClickListener);
 					} else {
 						throw new IllegalStateException(v.getClass().getName() + " is not a "
 								+ " view that can be bound by this SimpleCursorAdapter");

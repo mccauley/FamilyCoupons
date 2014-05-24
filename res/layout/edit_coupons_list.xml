@@ -9,7 +9,7 @@
             <ListView android:id="@android:id/list" android:layout_width="match_parent" android:layout_height="442dp"></ListView>
         </LinearLayout>
     </ScrollView>
-    <RelativeLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/relativeLayout1">
+    <RelativeLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/couponItemDetail">
         <Button android:text="@string/done" android:layout_height="wrap_content" android:id="@+id/edit_coupons_done_btn" android:layout_width="wrap_content" android:layout_alignParentTop="true" android:layout_alignParentRight="true" android:layout_marginRight="25dp"></Button>
     </RelativeLayout>
     

@@ -15,6 +15,7 @@
         <activity android:name="AddMemberActivity"></activity>
         <activity android:name="EditMemberActivity"></activity>
         <activity android:name="EditCouponsListActivity"></activity>
+        <activity android:name="EditCouponActivity"></activity>
 
     </application>
 </manifest>

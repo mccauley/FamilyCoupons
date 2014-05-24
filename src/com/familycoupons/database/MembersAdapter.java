@@ -174,6 +174,15 @@ public class MembersAdapter {
 		}
 		return mCursor;
 	}
+	
+	public Cursor fetchCoupon(long rowId) throws SQLException {
+		Cursor mCursor = database.query(CouponType.TABLE_NAME, new String[] { CouponType.COLUMN_ID, CouponType.COLUMN_DESC,
+				CouponType.COLUMN_NAME, CouponType.COLUMN_IMAGE, CouponType.COLUMN_ACTIVE }, CouponType.COLUMN_ID + "=" + rowId, null, null, null, null);
+		if (mCursor != null) {
+			mCursor.moveToFirst();
+		}
+		return mCursor;
+	}
 
 	public Cursor fetchCouponTypes() {
 		return database.query(CouponType.TABLE_NAME, new String[] { CouponType.COLUMN_ID, CouponType.COLUMN_DESC,
