@@ -3,7 +3,7 @@
 <RelativeLayout android:id="@+id/lineItem"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="wrap_content" android:layout_height="wrap_content"
-	android:gravity="center_vertical" android.background="Color.TRANSPARENT">
+	android:gravity="center_vertical" android:android.background="Color.TRANSPARENT">
 	
 	<Button android:id="@+id/emc_minus_btn" android:gravity="center"
 		android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="-" 

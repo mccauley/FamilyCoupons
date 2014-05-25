@@ -3,7 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
   android:layout_width="match_parent"
-  android:layout_height="match_parent" android.background="Color.TRANSPARENT">
+  android:layout_height="match_parent" android:android.background="Color.TRANSPARENT">
     <TextView android:layout_height="wrap_content" android:id="@+id/name_lbl" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/name_str"></TextView>
     <EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/memberNameField" android:inputType="textPersonName">
         <requestFocus></requestFocus>
