@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.familycoupons.datatypes.CouponType;
 import com.familycoupons.datatypes.Coupons;
@@ -89,6 +90,7 @@ public class MembersAdapter {
 	public void updateCouponTypeActive(int couponTypeId, boolean active) {
 		ContentValues values = new ContentValues();
 		values.put(CouponType.COLUMN_ACTIVE, (active ? 1 : 0));
+		Log.d("MembersAdapter", "updating coupon active status id=" + couponTypeId + " with {'" + active + "'}");
 		database.update(CouponType.TABLE_NAME, values, CouponType.COLUMN_ID + "=?", makeStringArray(couponTypeId));
 	}
 
@@ -129,6 +131,7 @@ public class MembersAdapter {
 	}
 	
 	public void updateCoupon(long id, String name, String desc) {
+		Log.d("MembersAdapter", "updating coupon id=" + id + " with {'" + name + "', '" + desc + "'}");
 		ContentValues values = new ContentValues();
 		values.put(CouponType.COLUMN_NAME, name);
 		values.put(CouponType.COLUMN_DESC, desc);
