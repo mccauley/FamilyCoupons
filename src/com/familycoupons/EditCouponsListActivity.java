@@ -94,6 +94,14 @@ public class EditCouponsListActivity extends ListActivity {
 			}
 			cursor.moveToPosition(position);
 
+			final int couponTypeId = cursor.getInt(cursor.getColumnIndex(CouponType.COLUMN_ID));
+			View.OnClickListener editDetailClickListener = new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					editCouponDetailIntent.putExtra("couponTypeId", couponTypeId);
+					startActivity(editCouponDetailIntent);
+				}
+			};
 			for (int i = 0; i < count; i++) {
 				final View v = convertView.findViewById(localTo[i]);
 				if (v != null) {
@@ -102,29 +110,20 @@ public class EditCouponsListActivity extends ListActivity {
 					if (text == null) {
 						text = "";
 					}
-					final int couponTypeId = cursor.getInt(cursor.getColumnIndex(CouponType.COLUMN_ID));
-					View.OnClickListener editDetailClickListener = new View.OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							editCouponDetailIntent.putExtra("couponTypeId", couponTypeId);
-							startActivity(editCouponDetailIntent);
-						}
-					};
 
 					if (v instanceof CheckBox) {
 						setViewCheckBox((CheckBox) v, text, couponTypeId);
 					} else if (v instanceof TextView) {
 						setViewText((TextView) v, text);
-						v.setOnClickListener(editDetailClickListener);
 					} else if (v instanceof ImageView) {
 						setViewImage((ImageView) v, text);
-						v.setOnClickListener(editDetailClickListener);
 					} else {
 						throw new IllegalStateException(v.getClass().getName() + " is not a "
 								+ " view that can be bound by this SimpleCursorAdapter");
 					}
 				}
 			}
+			convertView.setOnClickListener(editDetailClickListener);
 			return convertView;
 		}
 
