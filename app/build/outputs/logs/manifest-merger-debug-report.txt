@@ -1,0 +1,57 @@
+-- Merging decision tree log ---
+manifest
+ADDED from AndroidManifest.xml:2:1
+	xmlns:android
+		ADDED from AndroidManifest.xml:4:7
+	package
+		ADDED from AndroidManifest.xml:2:11
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+	android:versionName
+		ADDED from AndroidManifest.xml:4:66
+	android:versionCode
+		ADDED from AndroidManifest.xml:3:7
+		INJECTED from AndroidManifest.xml:0:0
+		INJECTED from AndroidManifest.xml:0:0
+uses-sdk
+ADDED from AndroidManifest.xml:5:5
+	android:minSdkVersion
+		ADDED from AndroidManifest.xml:5:15
+application
+ADDED from AndroidManifest.xml:8:5
+	android:label
+		ADDED from AndroidManifest.xml:8:48
+	android:icon
+		ADDED from AndroidManifest.xml:8:18
+activity#com.familycoupons.FamilyListActivity
+ADDED from AndroidManifest.xml:9:9
+	android:label
+		ADDED from AndroidManifest.xml:10:19
+	android:name
+		ADDED from AndroidManifest.xml:9:19
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:11:13
+action#android.intent.action.MAIN
+ADDED from AndroidManifest.xml:12:17
+	android:name
+		ADDED from AndroidManifest.xml:12:25
+category#android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:13:17
+	android:name
+		ADDED from AndroidManifest.xml:13:27
+activity#com.familycoupons.AddMemberActivity
+ADDED from AndroidManifest.xml:16:9
+	android:name
+		ADDED from AndroidManifest.xml:16:19
+activity#com.familycoupons.EditMemberActivity
+ADDED from AndroidManifest.xml:17:9
+	android:name
+		ADDED from AndroidManifest.xml:17:19
+activity#com.familycoupons.EditCouponsListActivity
+ADDED from AndroidManifest.xml:18:9
+	android:name
+		ADDED from AndroidManifest.xml:18:19
+activity#com.familycoupons.EditCouponActivity
+ADDED from AndroidManifest.xml:19:9
+	android:name
+		ADDED from AndroidManifest.xml:19:19

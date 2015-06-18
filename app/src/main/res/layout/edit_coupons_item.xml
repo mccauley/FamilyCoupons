@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/couponItemDetail"
+        android:layout_width="match_parent"
+        android:layout_height="74dp" >
+
+        <ImageView android:src="@drawable/star" android:layout_height="wrap_content" android:id="@+id/edit_coupons_image" android:layout_width="wrap_content" android:layout_alignParentTop="true" android:layout_alignParentLeft="true" android:layout_alignParentBottom="true" android:contentDescription="TODO"></ImageView>
+        <CheckBox android:layout_height="wrap_content" android:id="@+id/couponCheckBox" android:text="" android:layout_width="wrap_content" android:layout_centerVertical="true" android:layout_alignParentRight="true"></CheckBox>
+        <TextView android:textAppearance="?android:attr/textAppearanceLarge" android:text="TextView" android:layout_height="wrap_content" android:id="@+id/edit_coupons_item_name" android:layout_width="wrap_content" android:layout_alignParentTop="true" android:layout_toRightOf="@+id/edit_coupons_image" android:layout_marginLeft="23dp"></TextView>
+        <TextView android:textAppearance="?android:attr/textAppearanceSmall" android:text="TextView" android:layout_height="wrap_content" android:id="@+id/edit_coupons_item_desc" android:layout_width="wrap_content" android:layout_below="@+id/edit_coupons_item_name" android:layout_alignLeft="@+id/edit_coupons_item_name" android:layout_alignParentBottom="true" android:layout_toLeftOf="@+id/couponCheckBox"></TextView>
+    </RelativeLayout>
+</LinearLayout>

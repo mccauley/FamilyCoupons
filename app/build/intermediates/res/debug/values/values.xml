@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/home/leemccauley/personal/FamilyCoupons/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <color name="black">#000000</color>
+    <color name="name_list_color">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <!-- From: file:/home/leemccauley/personal/FamilyCoupons/app/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="editTextLabelSize">12pt</dimen>
+    <!-- From: file:/home/leemccauley/personal/FamilyCoupons/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="app_name">Family Rewards</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="description">Description</string>
+    <string name="done">Done</string>
+    <string name="edit">Edit</string>
+    <string name="emc_add_coupon_type">Add Coupon Type</string>
+    <string name="icon">Icon</string>
+    <string name="menu_item_add_member">Add Member</string>
+    <string name="menu_item_edit_coupons">Edit Coupons</string>
+    <string name="menu_item_edit_member">Edit Member</string>
+    <string name="name_str">Name</string>
+    <string name="no_members">There are currently no family members. Press the menu button then \"Add Member\" to add a family member to the list.</string>
+    <string name="package_string">com.familycoupons</string>
+    <string name="save">Save</string>
+    <string name="which_member">Select a Family Member to edit</string>
+</resources>

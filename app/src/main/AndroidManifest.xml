@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.familycoupons"
+      android:versionCode="2"
+      xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.0.1">
+    <uses-sdk android:minSdkVersion="1"/>
+
+
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:name=".FamilyListActivity"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="AddMemberActivity"></activity>
+        <activity android:name="EditMemberActivity"></activity>
+        <activity android:name="EditCouponsListActivity"></activity>
+        <activity android:name="EditCouponActivity"></activity>
+
+    </application>
+</manifest>

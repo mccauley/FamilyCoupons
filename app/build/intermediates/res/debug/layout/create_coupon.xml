@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent" android:weightSum="1">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="0dp" android:id="@+id/couponItemDetail" android:layout_weight="0.82">
+        <ImageButton android:layout_height="wrap_content" android:src="@drawable/star" android:layout_width="wrap_content" android:id="@+id/imageButton1" android:layout_alignParentTop="true" android:layout_alignParentRight="true" android:layout_marginRight="68dp"></ImageButton>
+        <EditText android:id="@+id/editCouponNameDetail" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_below="@+id/imageButton1" android:layout_alignParentLeft="true" android:layout_alignParentRight="true" android:inputType="text"></EditText>
+        <TextView android:text="@string/name_str" android:layout_height="wrap_content" android:id="@+id/iconTextLabel" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_width="wrap_content" android:layout_alignBottom="@+id/imageButton1" android:layout_alignParentLeft="true" android:layout_marginLeft="22dp"></TextView>
+    </RelativeLayout>
+    
+</LinearLayout>
+<!-- From: file:/home/leemccauley/personal/FamilyCoupons/app/src/main/res/layout/create_coupon.xml -->

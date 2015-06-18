@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent" android:background="@android:color/transparent">
+    <TextView android:layout_height="wrap_content" android:id="@+id/name_lbl" android:layout_width="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:text="@string/name_str"></TextView>
+    <EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/memberNameField" android:inputType="textPersonName">
+        <requestFocus></requestFocus>
+    </EditText>
+    <LinearLayout android:id="@+id/linearLayout1" android:layout_height="wrap_content" android:layout_width="match_parent">
+        <Button android:text="@string/save" android:id="@+id/addMemberSaveBtn" android:layout_height="wrap_content" android:layout_width="wrap_content"></Button>
+        <Button android:text="@string/cancel" android:id="@+id/addMemberCancelBtn" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+    </LinearLayout>
+    
+</LinearLayout>
+<!-- From: file:/home/leemccauley/personal/FamilyCoupons/app/src/main/res/layout/add_member.xml -->

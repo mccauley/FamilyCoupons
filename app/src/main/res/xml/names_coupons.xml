@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<members
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <member value="Megan">
+  	<coupons>
+  		<coupon 
+  			name="dessert"
+  			quantity="1"
+  			modified_date="07/05/2011">
+  		</coupon>
+  		<coupon 
+  			name="stars"
+  			quantity="4"
+  			modified_date="07/05/2011">
+  		</coupon>
+  		<coupon 
+  			name="hair_drying"
+  			quantity="1"
+  			modified_date="07/05/2011">
+  		</coupon>
+  	</coupons>
+  </member>
+  <member value="Sara">
+  	<coupons>
+  		<coupon 
+  			name="dessert"
+  			quantity="1"
+  			modified_date="07/05/2011">
+  		</coupon>
+  		<coupon 
+  			name="stars"
+  			quantity="4"
+  			modified_date="07/05/2011">
+  		</coupon>
+  		<coupon 
+  			name="hair_drying"
+  			quantity="1"
+  			modified_date="07/05/2011">
+  		</coupon>
+  	</coupons>
+  </member>
+</members>
