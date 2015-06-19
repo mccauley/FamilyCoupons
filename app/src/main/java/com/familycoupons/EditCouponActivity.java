@@ -1,27 +1,25 @@
 package com.familycoupons;
 
-import com.familycoupons.database.MembersAdapter;
-import com.familycoupons.datatypes.CouponType;
-
-import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-public class EditCouponActivity extends Activity {
+import com.familycoupons.database.MembersAdapter;
+import com.familycoupons.datatypes.CouponType;
+
+public class EditCouponActivity extends AppCompatActivity {
 
 	private MembersAdapter dbHelper;
-	EditCouponActivity me;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		me = this;
 		setContentView(R.layout.edit_coupon_detail);
 		dbHelper = new MembersAdapter(this);
 		dbHelper.open();
@@ -51,7 +49,7 @@ public class EditCouponActivity extends Activity {
 		cancelButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				me.finish();
+				finish();
 			}
 		});
 		
@@ -63,7 +61,7 @@ public class EditCouponActivity extends Activity {
 				dbHelper.open();
 				dbHelper.updateCoupon(couponTypeId, name, desc);
 				dbHelper.close();
-				me.finish();
+				finish();
 			}
 		});
 	}

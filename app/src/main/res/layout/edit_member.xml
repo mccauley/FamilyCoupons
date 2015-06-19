@@ -1,17 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent" android:background="@android:color/transparent">
-    <TextView android:layout_height="wrap_content" android:text="@string/name_str" android:id="@+id/iconTextLabel" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_width="wrap_content"></TextView>
-    <EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/edit_name" android:inputType="textPersonName">
-        <requestFocus></requestFocus>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/iconTextLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name_str"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <EditText
+        android:id="@+id/edit_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName">
+
+        <requestFocus/>
     </EditText>
-    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/linearLayout1">
-        <Button android:text="@string/delete" android:id="@+id/edit_delete_btn" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-        <Button android:text="@string/cancel" android:id="@+id/edit_cancel_btn" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-        <Button android:text="@string/save" android:id="@+id/edit_save_btn" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right">
+
+        <Button
+            android:id="@+id/edit_delete_btn"
+            style="@style/ButtonBase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"/>
+
+        <Button
+            android:id="@+id/edit_cancel_btn"
+            style="@style/ButtonBase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"/>
+
+        <Button
+            android:id="@+id/edit_save_btn"
+            style="@style/ButtonBase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"/>
     </LinearLayout>
-    
+
 </LinearLayout>

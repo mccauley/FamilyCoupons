@@ -1,14 +1,12 @@
 package com.familycoupons;
 
-import java.util.HashMap;
-
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,23 +15,26 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.familycoupons.database.MembersAdapter;
 import com.familycoupons.datatypes.CouponType;
 
-public class EditCouponsListActivity extends ListActivity {
+import java.util.HashMap;
+
+public class EditCouponsListActivity extends AppCompatActivity {
 	private MembersAdapter dbHelper;
 	private Intent editCouponDetailIntent;
-	EditCouponsListActivity me;
+	private ListView listView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edit_coupons_list);
-		getListView().setDividerHeight(2);
-		me = this;
+		listView = (ListView) findViewById(R.id.coupon_list);
+		listView.setDividerHeight(2);
 		editCouponDetailIntent = new Intent(this, EditCouponActivity.class);
 
 		dbHelper = new MembersAdapter(this);
@@ -43,7 +44,7 @@ public class EditCouponsListActivity extends ListActivity {
 		doneButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				me.finish();
+				finish();
 			}
 		});
 
@@ -67,10 +68,10 @@ public class EditCouponsListActivity extends ListActivity {
 
 		CouponListSimpleCursorAdapter coupons = new CouponListSimpleCursorAdapter(this, R.layout.edit_coupons_item,
 				cursor, from, to);
-		setListAdapter(coupons);
+		listView.setAdapter(coupons);
 	}
 
-	public class CouponListSimpleCursorAdapter extends SimpleCursorAdapter {
+    public class CouponListSimpleCursorAdapter extends SimpleCursorAdapter {
 		private int[] localTo;
 		private String[] localFrom;
 		private HashMap<Integer, Boolean> mChecked = new HashMap<Integer, Boolean>();

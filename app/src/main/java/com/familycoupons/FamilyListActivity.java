@@ -2,17 +2,18 @@ package com.familycoupons;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ExpandableListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SimpleCursorTreeAdapter;
 import android.widget.TextView;
@@ -22,23 +23,21 @@ import com.familycoupons.datatypes.CouponType;
 import com.familycoupons.datatypes.Coupons;
 import com.familycoupons.datatypes.FamilyMembers;
 
-public class FamilyListActivity extends ExpandableListActivity {
-	private static final int WHICH_MEMBER_DIALOG = 0;
-	
+public class FamilyListActivity extends AppCompatActivity {
 	private MembersAdapter dbHelper;
-	long[] memberIdArray;
-	String[] memberNamesArray;
+	private long[] memberIdArray;
+	private String[] memberNamesArray;
 	private Intent editMemberIntent;
-	MenuItem addMemberMenuItem;
-	MenuItem editCouponsMenuItem;
-	Dialog whichMemberDialog;
+	private MenuItem addMemberMenuItem;
+	private MenuItem editCouponsMenuItem;
+	private ExpandableListView expandableListView;
 
-	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.member_list);
-		getExpandableListView().setDividerHeight(2);
+		expandableListView = (ExpandableListView) findViewById(R.id.members_list);
+		expandableListView.setDividerHeight(2);
 		dbHelper = new MembersAdapter(this);
 		dbHelper.open();
 		editMemberIntent = new Intent(this, EditMemberActivity.class);
@@ -46,10 +45,15 @@ public class FamilyListActivity extends ExpandableListActivity {
 		getWindow().setBackgroundDrawableResource(R.drawable.fadedarchetype);
 
 		fillData();
-		registerForContextMenu(getExpandableListView());
+		registerForContextMenu(expandableListView);
 	}
 
-	@Override
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
 	public void finish() {
 		super.finish();
 		dbHelper.close();
@@ -67,7 +71,8 @@ public class FamilyListActivity extends ExpandableListActivity {
 
 		NameListCursorTreeAdapter members = new NameListCursorTreeAdapter(this, cursor, R.layout.name_item, from, to,
 				R.layout.adaptor_content, childFrom, childTo);
-		setListAdapter(members);
+		expandableListView.setAdapter(members);
+        expandableListView.setEmptyView(findViewById(R.id.empty_view));
 	}
 
 	@Override
@@ -82,20 +87,11 @@ public class FamilyListActivity extends ExpandableListActivity {
 		editMemberMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
-				showDialog(WHICH_MEMBER_DIALOG);
+				buildWhichMemberDialog().show();
 				return true;
 			}
 		});
 		return true;
-	}
-
-	@Override
-	protected Dialog onCreateDialog(int id) {
-		Dialog dialog = null;
-		if (id == WHICH_MEMBER_DIALOG) {
-			dialog = buildWhichMemberDialog();
-		}
-		return dialog;
 	}
 
 	private Dialog buildWhichMemberDialog() {
@@ -106,7 +102,6 @@ public class FamilyListActivity extends ExpandableListActivity {
 			public void onClick(DialogInterface dialog, int item) {
 				if (item != -1) {
 					editMemberIntent.putExtra("memberId", memberIdArray[item]);
-					removeDialog(WHICH_MEMBER_DIALOG);
 					startActivity(editMemberIntent);
 				}
 			}
@@ -167,8 +162,8 @@ public class FamilyListActivity extends ExpandableListActivity {
 		protected void bindChildView(View view, Context context, Cursor cursor, boolean isLastChild) {
 			super.bindChildView(view, context, cursor, isLastChild);
 			final TextView couponQtyView = (TextView) view.findViewById(R.id.emc_coupon_number);
-			Button plusButton = (Button) view.findViewById(R.id.emc_plus_btn);
-			Button minusButton = (Button) view.findViewById(R.id.emc_minus_btn);
+            ImageButton plusButton = (ImageButton) view.findViewById(R.id.emc_plus_btn);
+            ImageButton minusButton = (ImageButton) view.findViewById(R.id.emc_minus_btn);
 			final long memberId = cursor.getLong(cursor.getColumnIndex(Coupons.COLUMN_MEMBER_ID));
 			final int couponType = cursor.getInt(cursor.getColumnIndex(Coupons.COLUMN_COUPON_TYPE_ID));
 

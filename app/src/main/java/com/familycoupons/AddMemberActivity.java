@@ -1,23 +1,21 @@
 package com.familycoupons;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.familycoupons.database.MembersAdapter;
 
-public class AddMemberActivity extends Activity {
+public class AddMemberActivity extends AppCompatActivity {
 	private MembersAdapter dbHelper;
-	private AddMemberActivity me;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.add_member);
-		me = this;
 		dbHelper = new MembersAdapter(this);
 		dbHelper.open();
 		
@@ -29,7 +27,7 @@ public class AddMemberActivity extends Activity {
 				EditText memberNameText = (EditText) findViewById(R.id.memberNameField);
 				String memberName = memberNameText.getText().toString();
 				dbHelper.createMember(memberName);
-				me.finish();
+				finish();
 			}
 		});
 		Button cancelButton = (Button) findViewById(R.id.addMemberCancelBtn);
@@ -37,7 +35,7 @@ public class AddMemberActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				me.finish();
+				finish();
 
 			}
 		});

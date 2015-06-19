@@ -2,8 +2,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <string name="no_members">There are currently no family members. Press the menu button then \"Add Member\" to add a family member to the list.</string>
     <string name="app_name">Family Rewards</string>
-    <color name="name_list_color">#000000</color>
-    <color name="black">#000000</color>
     <string name="menu_item_add_member">Add Member</string>
     <string name="menu_item_edit_coupons">Edit Coupons</string>
     <string name="name_str">Name</string>
@@ -13,7 +11,6 @@
     <string name="description">Description</string>
     <string name="package_string">com.familycoupons</string>
     <string name="emc_add_coupon_type">Add Coupon Type</string>
-    <color name="white">#FFFFFF</color>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
     <string name="menu_item_edit_member">Edit Member</string>

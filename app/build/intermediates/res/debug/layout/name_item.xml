@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent" android:layout_height="match_parent" android:weightSum="1" android:background="@android:color/transparent">
-    <TextView android:id="@+id/member_name" android:textColor="@color/white" android:textSize="30sp" android:layout_marginLeft="35dp" android:layout_marginTop="6dp" android:text="@+id/TextView01" android:layout_height="wrap_content" android:layout_width="225dp"></TextView>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/member_name"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="6dp"
+        android:text="@+id/TextView01"
+        android:textColor="@color/white"
+        android:textSize="30sp"/>
 
 </LinearLayout>
 <!-- From: file:/home/leemccauley/personal/FamilyCoupons/app/src/main/res/layout/name_item.xml -->

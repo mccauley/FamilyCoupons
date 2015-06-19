@@ -1,34 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout android:id="@+id/lineItem"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="wrap_content" android:layout_height="wrap_content"
-	android:gravity="center_vertical" android:background="@android:color/transparent">
-	
-	<Button android:id="@+id/emc_minus_btn" android:gravity="center"
-		android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="-" 
-		android:layout_alignParentLeft="true"
-		android:layout_marginLeft="50dip" />
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lineItem"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@android:color/transparent"
+    android:gravity="center_vertical">
 
-	<ImageView android:id="@+id/emc_coupon_image" android:layout_width="32dip"
-		android:layout_height="32dip" android:layout_alignParentLeft="true"
-		android:layout_marginLeft="85dip"
-		android:layout_marginTop="7dip"
-		android:layout_toRightOf="@+id/emc_minus_btn" />
+    <ImageButton
+        android:id="@+id/emc_minus_btn"
+        android:src="@drawable/minus_button"
+        android:background="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="100dp" />
 
-	<TextView android:id="@+id/emc_coupon_number" android:layout_height="wrap_content"
-		android:layout_marginLeft="10dip" android:textSize="24sp"
-		android:textColor="#ffffff" android:layout_width="wrap_content"
-		android:layout_marginTop="7dip"
-		android:layout_toRightOf="@+id/emc_coupon_image"
-		android:text="0" />
+    <ImageView
+        android:id="@+id/emc_coupon_image"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="7dp"/>
 
-	<Button android:id="@+id/emc_plus_btn" android:gravity="center"
-		android:layout_height="wrap_content" android:layout_width="wrap_content"
-		android:layout_toRightOf="@+id/emc_coupon_number"
-		android:layout_marginLeft="10dip"
-		android:text="+" />
+    <TextView
+        android:id="@+id/emc_coupon_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="0"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+
+    <ImageButton
+        android:id="@+id/emc_plus_btn"
+        android:src="@drawable/plus_button"
+        android:background="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp" />
 
 
-</RelativeLayout>
+</LinearLayout>
 <!-- From: file:/home/leemccauley/personal/FamilyCoupons/app/src/main/res/layout/adaptor_content.xml -->

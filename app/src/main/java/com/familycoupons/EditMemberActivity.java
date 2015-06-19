@@ -1,11 +1,12 @@
 package com.familycoupons;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,17 +14,13 @@ import android.widget.EditText;
 import com.familycoupons.database.MembersAdapter;
 import com.familycoupons.datatypes.FamilyMembers;
 
-public class EditMemberActivity extends Activity {
-	private static final int CONFIRM_DELETE_DIALOG = 0;
-	MembersAdapter dbHelper;
-	EditMemberActivity me;
-	long deleteMemberId = -1;
+public class EditMemberActivity extends AppCompatActivity {
+	private MembersAdapter dbHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edit_member);
-		me = this;
 
 		dbHelper = new MembersAdapter(this);
 		dbHelper.open();
@@ -44,7 +41,7 @@ public class EditMemberActivity extends Activity {
 		cancelButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				me.finish();
+				finish();
 			}
 		});
 
@@ -56,43 +53,37 @@ public class EditMemberActivity extends Activity {
 				dbHelper.open();
 				dbHelper.updateMember(memberId, memberName);
 				dbHelper.close();
-				me.finish();
+				finish();
 			}
 		});
 
 		deleteButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				deleteMemberId = memberId;
-				showDialog(CONFIRM_DELETE_DIALOG);
+				createConfirmDialog(memberId).show();
 			}
 		});
 	}
 
-	@Override
-	protected Dialog onCreateDialog(int id) {
-		Dialog dialog = null;
-		if (id == CONFIRM_DELETE_DIALOG) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage("Are you sure you want to Delete this member?").setCancelable(false).setPositiveButton(
-					"Yes", new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							if (deleteMemberId > -1) {
-								dbHelper.open();
-								dbHelper.deleteMember(deleteMemberId);
-								dbHelper.close();
-								deleteMemberId = -1;
-								dismissDialog(CONFIRM_DELETE_DIALOG);
-								me.finish();
-							}
-						}
-					}).setNegativeButton("No", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int id) {
-					dialog.cancel();
-				}
-			});
-			dialog = builder.create();
-		}
+	@NonNull
+	private Dialog createConfirmDialog(final long deleteMemberId) {
+		Dialog dialog;AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("Are you sure you want to Delete this member?").setCancelable(false).setPositiveButton(
+                "Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        if (deleteMemberId > -1) {
+                            dbHelper.open();
+                            dbHelper.deleteMember(deleteMemberId);
+                            dbHelper.close();
+                            finish();
+                        }
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+		dialog = builder.create();
 		return dialog;
 	}
 

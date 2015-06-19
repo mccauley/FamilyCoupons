@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="4dp"
     tools:ignore="UselessParent" >
 
     <LinearLayout
@@ -81,7 +82,7 @@
 
         <Button
             android:id="@+id/couponEditDetailDoneButton"
-            style="?android:attr/buttonStyleSmall"
+            style="@style/ButtonBase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -90,7 +91,7 @@
 
         <Button
             android:id="@+id/couponEditDetailCancel"
-            style="?android:attr/buttonStyleSmall"
+            style="@style/ButtonBase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
