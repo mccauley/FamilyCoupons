@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/addMember" android:title="@string/menu_item_add_member"></item>
-    <item android:id="@+id/editMember" android:title="@string/menu_item_edit_member"></item>
-    <item android:id="@+id/editCoupons" android:title="@string/menu_item_edit_coupons"></item>
-</menu>
-<!-- From: file:/home/leemccauley/personal/FamilyCoupons/app/src/main/res/menu/memberlistoptions.xml -->
