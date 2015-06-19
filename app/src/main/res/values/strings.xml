@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <string name="no_members">There are currently no family members. Press the menu button then \"Add Member\" to add a family member to the list.</string>
+    <string name="no_members">There are currently no family members. Press the menu button then \"Add Family Member\" to add a family member to the list. You will also need to select some rewards that you want to keep track of. Touch \"Edit Rewards\" in the menu to select or modify the rewards.</string>
     <string name="app_name">Family Rewards</string>
-    <string name="menu_item_add_member">Add Member</string>
-    <string name="menu_item_edit_coupons">Edit Coupons</string>
+    <string name="menu_item_add_member">Add Family Member</string>
+    <string name="menu_item_edit_coupons">Edit Rewards</string>
     <string name="name_str">Name</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="done">Done</string>
     <string name="description">Description</string>
     <string name="package_string">com.familycoupons</string>
-    <string name="emc_add_coupon_type">Add Coupon Type</string>
+    <string name="emc_add_coupon_type">Add Reward Type</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
-    <string name="menu_item_edit_member">Edit Member</string>
+    <string name="menu_item_edit_member">Edit Family Member</string>
     <string name="which_member">Select a Family Member to edit</string>
     <string name="icon">Icon</string>
 </resources>
